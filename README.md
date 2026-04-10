@@ -9,7 +9,7 @@ A collection of **40 custom terminal commands** for Linux Mint to streamline you
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/custom-linux-commands.git
+git clone https://github.com/your-username/shadowmintcommands.git
 cd custom-linux-commands
 ```
 
