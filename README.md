@@ -1,6 +1,8 @@
+Here’s your fully copyable README.md in clean Markdown format:
+
 # Custom Linux Mint Terminal Commands
 
-A collection of **40 custom terminal commands** for Linux Mint to streamline your workflow. These commands are designed to be **easy to use, modular, and extensible**. Simply source the script in your `.bashrc` or `.zshrc` to load all commands.
+A collection of **custom terminal commands** for Linux Mint to streamline your workflow. These commands are designed to be **easy to use, modular, and extensible**. Simply source the script in your `.bashrc` or `.zshrc` to load all commands.
 
 ---
 
@@ -11,164 +13,140 @@ A collection of **40 custom terminal commands** for Linux Mint to streamline you
 ```bash
 git clone https://github.com/your-username/custom-linux-commands.git
 cd custom-linux-commands
-```
+2. Install All Dependencies
 
-### 2. Install All Dependencies
+Run this single command to install all required packages:
 
-Run this **single command** to install all required packages:
+sudo apt update && sudo apt install -y curl jq speedtest-cli fdupes i3lock unzip unrar p7zip-full git nmcli ethtool iproute2 net-tools systemd vnstat lm-sensors lsof
+3. Add the Script to Your Shell
 
-```bash
-sudo apt update && sudo apt install -y curl jq speedtest-cli fdupes i3lock unzip unrar p7zip-full git nmcli ethtool iproute2 net-tools systemd
-```
+Add the following line to your ~/.bashrc or ~/.zshrc:
 
-### 3. Add the Script to Your Shell
-
-Add the following line to your `~/.bashrc` or `~/.zshrc`:
-
-```bash
 source ~/path/to/custom-linux-commands/custom_commands.sh
-```
-
-### 4. Reload Your Shell
-
-```bash
+4. Reload Your Shell
 source ~/.bashrc
-```
 
 or
 
-```bash
 source ~/.zshrc
-```
-
-### 5. Verify Installation
-
-Test a command to ensure everything works:
-
-```bash
+5. Verify Installation
 greet
 shadowbyte help
-```
-
----
-
-## 📜 Available Commands
-
-
-| Command                   | Description                                                | Usage                                       |
-| ------------------------- | ---------------------------------------------------------- | ------------------------------------------- |
-| **Core Commands**         | &nbsp;                                                     | &nbsp;                                      |
-| `greet`                   | Print a welcome message with the current date and uptime.  | `greet`                                     |
-| `sysinfo`                 | Display system information (kernel, CPU, memory, disk).    | `sysinfo`                                   |
-| `cleanup`                 | Remove cache and temporary files.                          | `cleanup`                                   |
-| `updateall`               | Update and upgrade all packages.                           | `updateall`                                 |
-| `openports`               | List all open ports.                                       | `openports`                                 |
-| **Network & System**      | &nbsp;                                                     | &nbsp;                                      |
-| `myip`                    | Show your public and local IP addresses.                   | `myip`                                      |
-| `publicip`                | Show only the public IP address.                           | `publicip`                                  |
-| `localip`                 | Show only the local IP address.                            | `localip`                                   |
-| `weather <city>`          | Get weather info for a city.                               | `weather "New York"`                        |
-| `speedtest`               | Run a network speed test.                                  | `speedtest`                                 |
-| `wifi`                    | Show connected Wi-Fi network and signal strength.          | `wifi`                                      |
-| `ethernet`                | Show Ethernet connection details (IP, MAC, speed, status). | `ethernet`                                  |
-| `pingtest <host>`         | Ping a host 4 times.                                       | `pingtest google.com`                       |
-| `battery`                 | Show battery status for laptops.                           | `battery`                                   |
-| **File Management**       | &nbsp;                                                     | &nbsp;                                      |
-| `findlarge`               | Find files larger than 100MB in the current directory.     | `findlarge`                                 |
-| `listfiles <dir>`         | List all files in a directory with details.                | `listfiles ~/Documents`                     |
-| `countfiles <dir>`        | Count the number of files in a directory.                  | `countfiles ~/Downloads`                    |
-| `findempty <dir>`         | Find empty files in a directory.                           | `findempty ~/Projects`                      |
-| `findduplicates <dir>`    | Find duplicate files in a directory.                       | `findduplicates ~/Downloads`                |
-| `backup <file>`           | Create a timestamped backup of a file or directory.        | `backup myfile.txt`                         |
-| `extract <file>`          | Extract any compressed file (zip, tar, etc.).              | `extract archive.zip`                       |
-| **Process & Performance** | &nbsp;                                                     | &nbsp;                                      |
-| `killport <port>`         | Kill a process running on a specific port.                 | `killport 8080`                             |
-| `topcpu`                  | Show the top 5 CPU-consuming processes.                    | `topcpu`                                    |
-| `topmem`                  | Show the top 5 memory-consuming processes.                 | `topmem`                                    |
-| `diskusage`               | Show disk usage for all mounted filesystems.               | `diskusage`                                 |
-| `diskfree`                | Show free disk space in a human-readable format.           | `diskfree`                                  |
-| `cpuinfo`                 | Show detailed CPU information.                             | `cpuinfo`                                   |
-| `meminfo`                 | Show detailed memory information.                          | `meminfo`                                   |
-| **System Information**    | &nbsp;                                                     | &nbsp;                                      |
-| `uptime`                  | Show system uptime in a readable format.                   | `uptime`                                    |
-| `osinfo`                  | Show OS information (name, version, ID).                   | `osinfo`                                    |
-| `processes`               | List all running processes.                                | `processes`                                 |
-| `services`                | List all running services.                                 | `services`                                  |
-| `users`                   | List all logged-in users.                                  | `users`                                     |
-| `lastboot`                | Show the last boot time.                                   | `lastboot`                                  |
-| **Utilities**             | &nbsp;                                                     | &nbsp;                                      |
-| `lockscreen`              | Lock the screen (unlock with password).                    | `lockscreen`                                |
-| `historyclean`            | Clear terminal history.                                    | `historyclean`                              |
-| `clearcache`              | Clear systemd journal logs and other caches.               | `clearcache`                                |
-| **Git & Development**     | &nbsp;                                                     | &nbsp;                                      |
-| `gitclone <repo>`         | Clone a GitHub repository quickly.                         | `gitclone https://github.com/user/repo.git` |
-| `makedir <dir>`           | Create a directory and `cd` into it.                       | `makedir my_project`                        |
-| `search <term>`           | Search for a term in all files in the current directory.   | `search "hello"`                            |
-| **Help**                  | &nbsp;                                                     | &nbsp;                                      |
-| `shadowbyte help`         | List all available custom commands.                        | `shadowbyte help`                           |
-
-
----
-
-## 🛠 Dependencies
-
-All dependencies are installed automatically by running:
-
-```bash
-sudo apt update && sudo apt install -y curl jq speedtest-cli fdupes i3lock unzip unrar p7zip-full git nmcli ethtool iproute2 net-tools systemd
-```
-
-
-| Dependency                     | Purpose                                           |
-| ------------------------------ | ------------------------------------------------- |
-| `curl`                         | Required for `myip`, `weather`, and `publicip`.   |
-| `jq`                           | Required for JSON parsing (used by some scripts). |
-| `speedtest-cli`                | Required for `speedtest`.                         |
-| `fdupes`                       | Required for `findduplicates`.                    |
-| `i3lock`                       | Required for `lockscreen`.                        |
-| `unzip`, `unrar`, `p7zip-full` | Required for `extract`.                           |
-| `git`                          | Required for `gitclone`.                          |
-| `nmcli`                        | Required for `wifi`.                              |
-| `ethtool`                      | Required for `ethernet`.                          |
-| `iproute2`                     | Required for `ethernet` and `localip`.            |
-| `net-tools`                    | Required for `pingtest`.                          |
-| `systemd`                      | Required for `services` and `clearcache`.         |
-
-
----
-
-## 📂 Repository Structure
-
-```
+📜 Available Commands
+Command	Description	Usage
+Core Commands		
+greet	Print a welcome message with date and uptime.	greet
+sysinfo	Display system information.	sysinfo
+cleanup	Remove cache and temporary files.	cleanup
+updateall	Update and upgrade all packages.	updateall
+openports	List open ports.	openports
+loadavg	Show system load average.	loadavg
+ramwatch	Live RAM usage monitor.	ramwatch
+Network & System		
+myip	Show public and local IP addresses.	myip
+publicip	Show only public IP.	publicip
+localip	Show only local IP.	localip
+weather <city>	Get weather for a city.	weather "New York"
+speedtest	Run internet speed test.	speedtest
+wifi	Show Wi-Fi details.	wifi
+ethernet	Show Ethernet details.	ethernet
+pingtest <host>	Ping a host 4 times.	pingtest google.com
+battery	Show battery status.	battery
+netusage	Show network usage stats.	netusage
+portinfo <port>	Show process using a port.	portinfo 8080
+flushdns	Flush DNS cache.	flushdns
+File Management		
+findlarge	Find files larger than 100MB.	findlarge
+listfiles <dir>	List files in directory.	listfiles ~/Documents
+countfiles <dir>	Count files in directory.	countfiles ~/Downloads
+findempty <dir>	Find empty files.	findempty ~/Projects
+findduplicates <dir>	Find duplicate files.	findduplicates ~/Downloads
+backup <file>	Create timestamped backup.	backup file.txt
+extract <file>	Extract archives.	extract file.zip
+extracthere <files>	Extract multiple archives.	extracthere *.zip
+treesize <dir>	Show folder size breakdown.	treesize ~/Projects
+largest	Show 10 largest files.	largest
+recent	Show recent files.	recent
+fsize <file>	Show file size.	fsize file.txt
+Process & Performance		
+killport <port>	Kill process using port.	killport 8080
+topcpu	Show top CPU processes.	topcpu
+topmem	Show top memory processes.	topmem
+diskusage	Show disk usage.	diskusage
+diskfree	Show free disk space.	diskfree
+cpuinfo	Show CPU info.	cpuinfo
+meminfo	Show memory info.	meminfo
+temps	Show CPU temperature.	temps
+ramwatch	Live RAM monitoring.	ramwatch
+System Information		
+uptime	Show system uptime.	uptime
+osinfo	Show OS info.	osinfo
+processes	List processes.	processes
+services	List services.	services
+users	Show logged-in users.	users
+lastboot	Show last boot time.	lastboot
+Utilities		
+lockscreen	Lock screen.	lockscreen
+historyclean	Clear terminal history.	historyclean
+clearcache	Clear system caches.	clearcache
+reload	Reload shell config.	reload
+now	Show current time.	now
+please	Re-run last command with sudo.	please
+Git & Development		
+gitclone <repo>	Clone GitHub repo.	gitclone URL
+gitquick "<msg>"	Commit & push quickly.	gitquick "msg"
+makedir <dir>	Create & enter directory.	makedir project
+search <term>	Search inside files.	search "hello"
+pyserve <port>	Start Python server.	pyserve 8000
+mkvenv	Create Python venv.	mkvenv
+Minecraft Tools		
+mcstart	Start Minecraft server.	mcstart
+mcstop	Stop server.	mcstop
+mcattach	Attach to server screen.	mcattach
+mcstatuslocal	Check local server.	mcstatuslocal
+Help		
+shadowbyte help	List all commands.	shadowbyte help
+🛠 Dependencies
+sudo apt update && sudo apt install -y curl jq speedtest-cli fdupes i3lock unzip unrar p7zip-full git nmcli ethtool iproute2 net-tools systemd vnstat lm-sensors lsof
+Breakdown
+Dependency	Purpose
+curl	API requests
+jq	JSON parsing
+speedtest-cli	Internet speed test
+fdupes	Duplicate file detection
+i3lock	Screen locking
+unzip/unrar/p7zip-full	Archive extraction
+git	Version control
+nmcli	Wi-Fi tools
+ethtool	Ethernet tools
+iproute2	Networking
+net-tools	Legacy networking
+systemd	Service management
+vnstat	Network usage stats
+lm-sensors	Temperature monitoring
+lsof	Port/process inspection
+📂 Repository Structure
 custom-linux-commands/
-├── custom_commands.sh  # Main script with all commands
-├── README.md           # This file
-└── LICENSE             # License file
-```
+├── custom_commands.sh
+├── README.md
+└── LICENSE
+🤝 Contributing
+Fork the repo
+Add or improve commands
+Submit a pull request
+📜 License
+
+MIT License
+
+💡 Tips
+Edit custom_commands.sh to customize commands
+Run reload instead of reopening terminal
+Debug with:
+bash -x custom_commands.sh
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-
-1. **Fork** the repository.
-2. **Add new commands** or improve existing ones.
-3. **Submit a pull request** with your changes.
-
----
-
-## 📜 License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-## 💡 Tips
-
-- **Customize commands**: Edit `custom_commands.sh` to add or modify commands.
-- **Keybindings**: Add keyboard shortcuts for frequently used commands (e.g., `lockscreen`) in your desktop environment settings.
-- **Debugging**: If a command fails, run it with `bash -x` to see detailed output:
-  ```bash
-  bash -x custom_commands.sh
-  ```
+If you want next upgrade, I can turn this into:
+- :contentReference[oaicite:0]{index=0}
+- :contentReference[oaicite:1]{index=1}
+- or :contentReference[oaicite:2]{index=2}
