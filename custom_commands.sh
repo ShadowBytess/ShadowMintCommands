@@ -336,7 +336,164 @@ clearcache() {
     echo "Caches cleared."
 }
 
-# 41. shadowbyte help - List all custom commands
+# 41. Dependency checker
+require() {
+    for cmd in "$@"; do
+        if ! command -v "$cmd" &> /dev/null; then
+            echo "Installing missing dependency: $cmd"
+            sudo apt install -y "$cmd"
+        fi
+    done
+}
+
+# 42. Reload shell without reopening terminal
+reload() {
+    source ~/.bashrc
+    echo "Shell reloaded."
+}
+
+# 43. Temperatures
+
+temps() {
+    require sensors
+    echo "=== Temperature Info ==="
+    sensors
+}
+
+loadavg() {
+    echo "=== Load Average ==="
+    cat /proc/loadavg
+}
+
+ramwatch() {
+    watch -n 1 free -h
+}
+
+# --- Network ---
+
+netusage() {
+    require vnstat
+    vnstat
+}
+
+portinfo() {
+    if [ -z "$1" ]; then
+        echo "Usage: portinfo <port>"
+        return 1
+    fi
+    lsof -i :$1
+}
+
+flushdns() {
+    sudo systemd-resolve --flush-caches
+    echo "DNS cache flushed."
+}
+
+# --- File Tools ---
+
+treesize() {
+    du -h --max-depth=1 "${1:-.}" | sort -hr
+}
+
+largest() {
+    find . -type f -exec du -h {} + | sort -rh | head -n 10
+}
+
+recent() {
+    find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | sort -r | head
+}
+
+fsize() {
+    if [ -z "$1" ]; then
+        echo "Usage: fsize <file>"
+        return 1
+    fi
+    du -sh "$1"
+}
+
+# --- Security / Permissions ---
+
+fixperms() {
+    if [ -z "$1" ]; then
+        echo "Usage: fixperms <directory>"
+        return 1
+    fi
+    sudo chown -R $USER:$USER "$1"
+    chmod -R 755 "$1"
+    echo "Permissions fixed for $1"
+}
+
+whoports() {
+    sudo netstat -tulpn
+}
+
+# --- Dev Tools ---
+
+pyserve() {
+    python3 -m http.server ${1:-8000}
+}
+
+mkvenv() {
+    python3 -m venv venv
+    source venv/bin/activate
+    echo "Virtual environment activated."
+}
+
+gitquick() {
+    if [ -z "$1" ]; then
+        echo "Usage: gitquick <commit message>"
+        return 1
+    fi
+    git add .
+    git commit -m "$1"
+    git push
+}
+
+# --- Minecraft Helpers ---
+
+mcstatuslocal() {
+    require python3-pip
+    pip3 install mcstatus --quiet
+    mcstatus localhost
+}
+
+mcstart() {
+    screen -dmS minecraft java -Xmx2G -Xms1G -jar server.jar nogui
+    echo "Minecraft server started."
+}
+
+mcattach() {
+    screen -r minecraft
+}
+
+mcstop() {
+    screen -S minecraft -X stuff "stop\n"
+    echo "Stopping Minecraft server..."
+}
+
+# --- Quality of Life ---
+
+please() {
+    sudo $(history -p !!)
+}
+
+now() {
+    date +"%Y-%m-%d %H:%M:%S"
+}
+
+extracthere() {
+    for file in "$@"; do
+        case "$file" in
+            *.zip) unzip -o "$file" ;;
+            *.tar.gz) tar -xzf "$file" ;;
+            *.tar.bz2) tar -xjf "$file" ;;
+            *.7z) 7z x "$file" ;;
+            *) echo "Unsupported: $file" ;;
+        esac
+    done
+}
+
+# shadowbyte help - List all custom commands
 shadowbyte_help() {
     echo "=== Custom Commands ==="
     echo "Available commands:"
